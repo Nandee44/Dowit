@@ -19,4 +19,8 @@ body {
     width: 75%;
     background-color: rgb(249, 249, 249);
     margin-left: 25%;
+    display: flex;
+    padding-left: 3rem;
+    padding-top: 2rem;
+    flex-direction: column;
 }
