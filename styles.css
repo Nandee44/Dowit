@@ -19,13 +19,14 @@ body {
     width: 100vw;
     margin: 0%;
     display: flex;
+    background-color: #e9edc9;
 }
 
 #sidebar {
     width: 25%;
     height: 100vh;
     margin: 0;
-    background-color: rgb(216, 216, 216);
+    background-color: #ccd5ae;
     position: fixed;
     border-right: 1px solid rgb(46, 46, 46);
 }
@@ -33,7 +34,7 @@ body {
 #main {
     height: 100vh;
     width: 75%;
-    background-color: rgb(249, 249, 249);
+    background-color: #e9edc9;
     margin-left: 25%;
     display: flex;
     padding-left: 3rem;
