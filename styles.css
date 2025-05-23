@@ -49,12 +49,15 @@ input {
 }
 
 #add {
-    min-height: 2em;
-    margin-left: 2rem;
-    border: 1px solid #a3b18a;
-    background-color: #fefae0;
-    border-radius: 2rem;
-    padding: 0.5rem;
+    height: 2rem;
+    filter: invert(29%) sepia(10%) saturate(1751%) hue-rotate(79deg) brightness(93%) contrast(80%);
+    margin-left: 1rem;
+}
+
+#newtaskinput {
+    display: flex;
+    justify-content: start;
+    align-items: center;
 }
 
 .task {
