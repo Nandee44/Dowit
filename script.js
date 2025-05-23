@@ -16,7 +16,7 @@ newtext.addEventListener("keydown", e => {
         numt++ ;
         newtask.innerHTML = `
                 <div class="task" id="task-${numt}">
-                    <img src="ellipse-outline.svg" alt="check" class="circle">
+                    <img src="ellipse-outline.svg" alt="check" class="circle" id="circle-${numt}">
                     <div class="txt outfit"><p id="text-${numt}"></p></div>
                 </div>
                 `;
@@ -24,6 +24,19 @@ newtext.addEventListener("keydown", e => {
         document.getElementById(`text-${numt}`).innerText = textt;
         textt = "";
         document.getElementById("newtext").value = "";
+
+        let checked = false;
+        const img = document.getElementById(`circle-${numt}`);
+        img.addEventListener("click", e => {
+            if (checked == false) {
+                img.src = "checkmark-circle.svg";
+                checked = true;
+            }
+            else {
+                img.src="ellipse-outline.svg";
+                checked = false;
+            }
+        });
     }
             
 });
@@ -44,3 +57,5 @@ add.addEventListener("click", e => {
     
             
 });
+
+
