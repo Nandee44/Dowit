@@ -2,8 +2,9 @@
 .outfit {
   font-family: "Outfit", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 400;
+  font-weight: 350;
   font-style: normal;
+  font-size: 1.05rem;
 }
 
 .outfitbold {
@@ -28,7 +29,7 @@ body {
     margin: 0;
     background-color: #ccd5ae;
     position: fixed;
-    border-right: 1px solid rgb(46, 46, 46);
+    border-right: 1px solid #a3b18a;
 }
 
 #main {
@@ -48,8 +49,12 @@ input {
 }
 
 #add {
-    height: 2em;
+    min-height: 2em;
     margin-left: 2rem;
+    border: 1px solid #a3b18a;
+    background-color: #fefae0;
+    border-radius: 2rem;
+    padding: 0.5rem;
 }
 
 .task {
@@ -57,9 +62,8 @@ input {
     display: flex;
     flex-direction: row;
     justify-content: start;
-    align-items: center;
-    border-top:  1px solid rgb(166, 166, 166);
-    border-bottom:  1px solid rgb(166, 166, 166);
+    align-items: start;
+    border-bottom:  1px solid #a3b18a;
 }
 
 .txt {
@@ -69,4 +73,16 @@ input {
 .circle {
     height: 1.5rem;
     margin-left: 0.2rem;
+    margin-top: 1rem;
+    filter: invert(29%) sepia(10%) saturate(1751%) hue-rotate(79deg) brightness(93%) contrast(80%);
+}
+
+#newtext {
+    border: 1px solid #a3b18a;
+    background-color: #fefae0;
+    border-radius: 2rem;
+    padding-left: 1rem;
+}
+#newtext::placeholder {
+    color: #a3b18a;
 }
