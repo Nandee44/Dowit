@@ -25,37 +25,8 @@ function markchecked(img, checked) {
             }
 }
 
-// click enter to add task
-
-newtext.addEventListener("keydown", e => {
-    if (e.key == "Enter" && textt != "") {
-        const newtask = document.createElement("div");
-        numt++ ;
-        newtask.className = "task";
-        newtask.id = `task-${numt}`;
-        newtask.innerHTML = `
-                    <img src="ellipse-outline.svg" alt="check" class="circle" id="circle-${numt}">
-                    <div class="txt outfit"><p id="text-${numt}"></p></div>
-                `;
-        document.getElementById("container").appendChild(newtask);
-        document.getElementById(`text-${numt}`).innerText = textt;
-        textt = "";
-        document.getElementById("newtext").value = "";
-
-        //mark checked or unchecked
-        let checked = false;
-        const img = document.getElementById(`circle-${numt}`);
-        img.addEventListener("click", e => {
-            checked = markchecked(img, checked);
-        });
-        
-        // if task number one
-        if (newtask.id == "task-1") {
-            newtask.style.borderTop = "1px solid #a3b18a";
-        }
-
-        // modify task
-        newtask.addEventListener("dblclick", ee => {
+//modify task
+function edittask(e, numt, newtask, checked) {
             const taskp = document.getElementById(`text-${numt}`);
             //insert input area
             let teext = newtask.innerText;
@@ -75,8 +46,8 @@ newtext.addEventListener("keydown", e => {
             inpp.value = teext;
 
             let someinput = document.getElementById(`newtext-${numt}`);
-            someinput.addEventListener("keydown", eee => {
-                if (eee.key == "Enter" && inpp.value != "") {
+            someinput.addEventListener("keydown", e => {
+                if (e.key == "Enter" && inpp.value != "") {
                     //finish update 
                     if (checked == false) {
                         newtask.innerHTML = `
@@ -99,22 +70,19 @@ newtext.addEventListener("keydown", e => {
                     document.getElementById(`text-${numt}`).innerText = inpp.value;
                     teext = "";
                 }
-                if (eee.key == "Backspace" || eee.key == "Enter") {
+                if (e.key == "Backspace" || e.key == "Enter") {
                     return
                 }
-                teext += eee.key;
+                teext += e.key;
+                return checked
 
             });
-            
-        });
-    }
-            
-});
+}
 
-// or click the add button
+// defining big ahh function to add tasks with functions inside
 
-add.addEventListener("click", e => {
-    if (textt != "") {
+function addtask(e) {
+        //actual task adding
         const newtask = document.createElement("div");
         numt++ ;
         newtask.className = "task";
@@ -128,22 +96,39 @@ add.addEventListener("click", e => {
         textt = "";
         document.getElementById("newtext").value = "";
 
+        //mark checked or unchecked
         let checked = false;
         const img = document.getElementById(`circle-${numt}`);
         img.addEventListener("click", e => {
-            if (checked == false) {
-                img.src = "checkmark-circle.svg";
-                checked = true;
-            }
-            else {
-                img.src="ellipse-outline.svg";
-                checked = false;
-            }
+            checked = markchecked(img, checked);
         });
-        // if task number one
+        
+        // if task number one add upper border
         if (newtask.id == "task-1") {
             newtask.style.borderTop = "1px solid #a3b18a";
         }
+
+        // modify task
+        newtask.addEventListener("dblclick", e => { checked = edittask(e, numt, newtask, checked); });
+}
+
+
+
+
+
+
+
+// click enter to add task
+newtext.addEventListener("keydown", e => {
+    if (e.key == "Enter" && textt != "") {
+        addtask(e);
+    }
+});
+
+// or click the add button
+add.addEventListener("click", e => {
+    if (textt != "") {
+        addtask(e);
     }
             
 });
