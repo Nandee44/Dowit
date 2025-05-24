@@ -13,6 +13,18 @@ newtext.addEventListener("keydown", e => {
 
 let numt = 0;
 
+//defining check function
+function markchecked(img, checked) {
+    if (checked == false) {
+                img.src = "checkmark-circle.svg";
+                return true;
+            }
+            else {
+                img.src="ellipse-outline.svg";
+                return false;
+            }
+}
+
 // click enter to add task
 
 newtext.addEventListener("keydown", e => {
@@ -34,15 +46,9 @@ newtext.addEventListener("keydown", e => {
         let checked = false;
         const img = document.getElementById(`circle-${numt}`);
         img.addEventListener("click", e => {
-            if (checked == false) {
-                img.src = "checkmark-circle.svg";
-                checked = true;
-            }
-            else {
-                img.src="ellipse-outline.svg";
-                checked = false;
-            }
+            checked = markchecked(img, checked);
         });
+        
         // if task number one
         if (newtask.id == "task-1") {
             newtask.style.borderTop = "1px solid #a3b18a";
@@ -87,14 +93,7 @@ newtext.addEventListener("keydown", e => {
                     //again check or uncheck
                     const img = document.getElementById(`circle-${numt}`);
                     img.addEventListener("click", e => {
-                        if (checked == false) {
-                            img.src = "checkmark-circle.svg";
-                            checked = true;
-                        }
-                        else {
-                            img.src="ellipse-outline.svg";
-                            checked = false;
-                        }
+                        checked = markchecked(img, checked)
                     });
                     
                     document.getElementById(`text-${numt}`).innerText = inpp.value;
