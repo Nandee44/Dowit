@@ -2,15 +2,6 @@ const add = document.getElementById("add");
 const newtext = document.getElementById("newtext");
 let textt = "";
 
-//typing task
-
-newtext.addEventListener("keydown", e => {
-    if (e.key == "Backspace" || e.key == "Enter") {
-        return
-    }
-    textt += e.key;
-});
-
 let numt = 0;
 
 //defining check function
@@ -39,6 +30,11 @@ function edittask(e, numt, newtask, checked) {
             const inpp = document.getElementById(`newtext-${numt}`);
             inpp.value = teext;
 
+            const img = document.getElementById(`circle-${numt}`);
+            img.addEventListener("click", e => {
+                checked = markchecked(img, checked);
+            });
+
             inpp.addEventListener("keydown", e => {
                 if (e.key == "Enter" && inpp.value != "") {
                     //finish update (going back to p element)
@@ -47,19 +43,19 @@ function edittask(e, numt, newtask, checked) {
                     <div class="txt outfit"><p id="text-${numt}">${inpp.value}</p></div>
                 `;
                     //again check or uncheck
-                    const img = document.getElementById(`circle-${numt}`);
-                    img.addEventListener("click", e => {
-                        checked = markchecked(img, checked)
-                    });
-                    
-                }
+                        const img = document.getElementById(`circle-${numt}`);
+                        img.addEventListener("click", e => {
+                            checked = markchecked(img, checked)
+                        });
+                    }
                 
-                return checked
+                });
+                
+            return checked
 
-            });
-}
+};
 
-// defining big ahh function to add tasks with functions inside
+// defining add tasks with functions inside
 
 function addtask(e) {
         //actual task adding
@@ -69,11 +65,10 @@ function addtask(e) {
         newtask.id = `task-${numt}`;
         newtask.innerHTML = `
                     <img src="ellipse-outline.svg" alt="check" class="circle" id="circle-${numt}">
-                    <div class="txt outfit"><p id="text-${numt}"></p></div>
+                    <div class="txt outfit"><p id="text-${numt}">${newtext.value}</p></div>
                 `;
         document.getElementById("container").appendChild(newtask);
-        document.getElementById(`text-${numt}`).innerText = textt;
-        textt = "";
+
         document.getElementById("newtext").value = "";
 
         //mark checked or unchecked
@@ -100,14 +95,14 @@ function addtask(e) {
 
 // click enter to add task
 newtext.addEventListener("keydown", e => {
-    if (e.key == "Enter" && textt != "") {
+    if (e.key == "Enter" && newtext.value != "") {
         addtask(e);
     }
 });
 
 // or click the add button
 add.addEventListener("click", e => {
-    if (textt != "") {
+    if (newtext.value != "") {
         addtask(e);
     }
             
