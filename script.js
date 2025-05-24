@@ -28,52 +28,32 @@ function markchecked(img, checked) {
 //modify task
 function edittask(e, numt, newtask, checked) {
             const taskp = document.getElementById(`text-${numt}`);
-            //insert input area
+            //insert input area (input element)
             let teext = newtask.innerText;
-            if (checked == false) {
-                newtask.innerHTML = `
-                    <img src="ellipse-outline.svg" alt="check" class="circle" id="circle-${numt}">
-                    <input type="text" class="outfit inpp" id="newtext-${numt}">
-                `;
-            }
-            else {
-                newtask.innerHTML = `
-                    <img src="checkmark-circle.svg" alt="check" class="circle" id="circle-${numt}">
-                    <input type="text" class="outfit inpp" id="newtext-${numt}">
-                `;
-            }
+
+            newtask.innerHTML = `
+            <img src="${checked ? "checkmark-circle.svg" : "ellipse-outline.svg"}" alt="check" class="circle" id="circle-${numt}">
+            <input type="text" class="outfit inpp" id="newtext-${numt}">
+        `;
+
             const inpp = document.getElementById(`newtext-${numt}`);
             inpp.value = teext;
 
-            let someinput = document.getElementById(`newtext-${numt}`);
-            someinput.addEventListener("keydown", e => {
+            inpp.addEventListener("keydown", e => {
                 if (e.key == "Enter" && inpp.value != "") {
-                    //finish update 
-                    if (checked == false) {
-                        newtask.innerHTML = `
-                        <img src="ellipse-outline.svg" alt="check" class="circle" id="circle-${numt}">
-                        <div class="txt outfit"><p id="text-${numt}"></p></div>
-                    `;
-                    }
-                    else {
-                        newtask.innerHTML = `
-                        <img src="checkmark-circle.svg" alt="check" class="circle" id="circle-${numt}">
-                        <div class="txt outfit"><p id="text-${numt}"></p></div>
-                    `;
-                    }
+                    //finish update (going back to p element)
+                    newtask.innerHTML = `
+                    <img src="${checked ? "checkmark-circle.svg" : "ellipse-outline.svg"}" alt="check" class="circle" id="circle-${numt}">
+                    <div class="txt outfit"><p id="text-${numt}">${inpp.value}</p></div>
+                `;
                     //again check or uncheck
                     const img = document.getElementById(`circle-${numt}`);
                     img.addEventListener("click", e => {
                         checked = markchecked(img, checked)
                     });
                     
-                    document.getElementById(`text-${numt}`).innerText = inpp.value;
-                    teext = "";
                 }
-                if (e.key == "Backspace" || e.key == "Enter") {
-                    return
-                }
-                teext += e.key;
+                
                 return checked
 
             });
