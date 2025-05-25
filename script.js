@@ -41,19 +41,29 @@ function edittask(e, numt, newtask, checked) {
                     newtask.innerHTML = `
                     <img src="${checked ? "checkmark-circle.svg" : "ellipse-outline.svg"}" alt="check" class="circle" id="circle-${numt}">
                     <div class="txt outfit"><p id="text-${numt}">${inpp.value}</p></div>
-                `;
+                    <img src="close.svg" alt="close" class="x" id="x-${numt}">
+                    `;
                     //again check or uncheck
                         const img = document.getElementById(`circle-${numt}`);
                         img.addEventListener("click", e => {
                             checked = markchecked(img, checked)
                         });
-                    }
+
+                    //bring back delete
+                        const closesvg = document.getElementById(`x-${numt}`);
+                        closesvg.addEventListener("click", e => { deletetask(e, newtask) });
+                }
                 
                 });
                 
             return checked
 
 };
+
+// deleting task (click on close svg)
+function deletetask(e, newtask) {
+    newtask.remove();
+}
 
 // defining add tasks with functions inside
 
@@ -83,6 +93,10 @@ function addtask(e) {
         if (newtask.id == "task-1") {
             newtask.style.borderTop = "1px solid #a3b18a";
         }
+        
+        //delete task
+        const closesvg = document.getElementById(`x-${numt}`);
+        closesvg.addEventListener("click", e => { deletetask(e, newtask) });
 
         // modify task
         newtask.addEventListener("dblclick", e => { checked = edittask(e, numt, newtask, checked); });
