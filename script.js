@@ -66,6 +66,7 @@ function addtask(e) {
         newtask.innerHTML = `
                     <img src="ellipse-outline.svg" alt="check" class="circle" id="circle-${numt}">
                     <div class="txt outfit"><p id="text-${numt}">${newtext.value}</p></div>
+                    <img src="close.svg" alt="close" class="x" id="x-${numt}">
                 `;
         document.getElementById("container").appendChild(newtask);
 
