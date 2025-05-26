@@ -97,3 +97,44 @@ input {
 #newtext::placeholder {
     color: #a3b18a;
 }
+
+
+#uppersidebar {
+    height: 25%;
+    width: 100%;
+    background-color: #a3b18a;
+}
+
+#lowersidebar {
+    height: 75%;
+    width: 100%; 
+}
+
+.currentpage {
+    width: 90%;
+    height: 2rem;
+    background-color: #a3b18a;
+    border-radius: 0.5rem;
+    margin-left: 0.5rem;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    padding-left: 0.5rem;
+}
+
+.linktootherpage {
+    width: 90%;
+    height: 2rem;
+    border: 1px solid #a3b18a;
+    border-radius: 0.5rem;
+    margin-left: 0.5rem;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    padding-left: 0.5rem;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
